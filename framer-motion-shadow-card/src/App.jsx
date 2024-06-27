@@ -2,6 +2,8 @@
 // import ShadowCard from './components/ShadowCards'
 // import imgae from "../src/assets/react.svg"
 // import Card from './components/Card';
+import ButtonClick from './components/ButtonClick';
+import OnHoverButton from './components/OnHoverButton';
 import TiltCard from './components/TiltCard';
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
       /> */}
       {/* <Card/> */}
       <TiltCard/>
+      <ButtonClick/>
+      <OnHoverButton/>
     </div>
   );
 }
