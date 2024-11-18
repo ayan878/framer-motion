@@ -113,15 +113,16 @@ const Toggles = () => {
           <button className="p-2 w-28 rounded-full flex shadow-lg relative bg-gradient-to-b justify-end from-blue-500 to-sky-300">
             <div className="h-10 w-10 rounded-full overflow-hidden shadow-lg relative">
               <div className="absolute inset-0 animate-pulse bg-gradient-to-tr from-amber-300 to-yellow-500 rounded-full"></div>
+              <div className="absolute inset-1.5 rounded-full bg-amber-300"></div>
             </div>
             {Array.from({ length: 4 }).map((_, index) => (
               <motion.span
                 key={index}
                 className="text-white text-xs absolute"
                 style={{
-                  left: `${Math.random()*index *10}px`,
-                  top: `${index===0 ? 16:index * 10}px`,
-                  width: `${index===0 ? 1.5 * 6 :index*6}px`,
+                  left: `${Math.random() * index * 10}px`,
+                  top: `${index === 0 ? 16 : index * 10}px`,
+                  width: `${index === 0 ? 1.5 * 6 : index * 6}px`,
                   height: `${index * 4}px`,
                 }}
                 animate={{
