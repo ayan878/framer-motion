@@ -120,7 +120,7 @@ const Toggles = () => {
                 key={index}
                 className="text-white text-xs absolute"
                 style={{
-                  left: `${Math.random() * index * 10}px`,
+                  left: `${Math.random() * index * 16}px`,
                   top: `${index === 0 ? 16 : index * 10}px`,
                   width: `${index === 0 ? 1.5 * 6 : index * 6}px`,
                   height: `${index * 4}px`,
