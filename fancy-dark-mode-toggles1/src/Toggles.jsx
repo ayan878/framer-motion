@@ -4,13 +4,16 @@ import Star from "./assets/star.svg";
 import { easeInOut, easeIn, motion } from "framer-motion";
 import { Context } from "./ContextProvider";
 
+
 const Toggles = () => {
   const [toggle, setToggle] = useState(false);
-  const { setTheme } = useContext(Context); 
+  const { theme,setTheme } = useContext(Context);
 
   const handleToggles = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setTheme(theme === "dark" ? "light" : "dark");
     setToggle((prev) => !prev);
+    console.log(theme);
+    
   };
 
   return (
@@ -46,7 +49,6 @@ const Toggles = () => {
               duration: 1,
               delay: 0.5,
               repeat: Infinity,
-              repeatType:"reverse",
               ease: easeIn,
             }}
           >
