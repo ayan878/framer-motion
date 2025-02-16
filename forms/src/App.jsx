@@ -1,25 +1,52 @@
 import { useState } from "react";
-import { motion, spring } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function App() {
   const [selected, setSelected] = useState("individual");
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="relative flex mb-6">
-        <img
-          src="https://via.placeholder.com/150"
-          alt="Image 1"
-          className="w-full h-auto mb-2"
-        />
-        <img
-          src="https://via.placeholder.com/150"
-          alt="Image 2"
-          className="w-full h-auto mb-2"
-        />
-      </div>
-      <div className="absolute top-0 left-0 w-2/5 max-w-4xl text-white bg-blue-500 p-6 shadow-lg">
-        <form action="submit" className="flex flex-col space-y-6 w-full ">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Motion Div for Background 1 (Initial Image) */}
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        animate={{
+          x: selected === "individual" ? "0%" : "-100%",
+        }}
+        transition={{
+          type: "spring",
+          damping: 25,
+          stiffness: 250,
+        }}
+      ></motion.div>
+
+      {/* Motion Div for Background 2 (Second Image) */}
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        animate={{
+          x: selected === "company" ? "0%" : "100%",
+        }}
+        transition={{
+          type: "spring",
+          damping: 25,
+          stiffness: 250,
+        }}
+      ></motion.div>
+
+      {/* Form Container */}
+      <div className="absolute h-screen top-0 left-0 w-2/5 max-w-4xl text-white bg-blue-500 p-6 shadow-lg">
+        <form action="submit" className="flex flex-col space-y-4 w-full">
           <h1 className="text-2xl font-bold text-start">Contact us</h1>
           <h2 className="text-xl text-start">Hi 👋! My name is...</h2>
 
@@ -37,8 +64,8 @@ export default function App() {
           {selected === "company" && (
             <motion.div
               initial={{ y: -100 }}
-              animate={{ y: 0, opacity: [0.2, 1] }}
-              transition={{}}
+              animate={{ y: 0, opacity: [0.5, 1] }}
+              transition={{ type: "spring", stiffness: 250 }}
             >
               <h3 className="text-xl">by the name of...</h3>
               <input
@@ -70,23 +97,31 @@ export default function App() {
 }
 
 const SliderToggle = ({ selected, setSelected }) => {
+  const handleToggle = (type) => {
+    setSelected(type);
+  };
   return (
-    <div className="relative flex gap-4 border border-white w-fit px-2 py-1 transition-colors">
+    <motion.div className="relative rounded-lg flex gap-4 border-[1px] border-white w-fit px-3 py-1.5 transition-colors font-semibold overflow-hidden">
       <button
         type="button"
-        className={`${
+        className={`px-3 py-1 rounded-l-lg ${
           selected === "individual" ? "text-blue-600" : "text-white"
         }`}
-        onClick={() => setSelected("individual")}
+        onClick={() => handleToggle("individual")}
       >
         <span className="relative z-10">An individual</span>
       </button>
       <button
         type="button"
-        className={`${selected === "company" ? "text-blue-600" : "text-white"}`}
-        onClick={() => setSelected("company")}
+        className={`px-3 py-1 ${
+          selected === "company" ? "text-blue-600" : "text-white"
+        }`}
+        onClick={() => {
+          handleToggle("company");
+        }}
       >
         <span className="relative z-10">A company</span>
+        <div className="absolute inset-0 z-0 flex"></div>
       </button>
       <div
         className={`absolute inset-0 z-0 flex ${
@@ -94,15 +129,15 @@ const SliderToggle = ({ selected, setSelected }) => {
         }`}
       >
         <motion.span
-          className="bg-white h-full w-1/2 "
+          className={`toggle bg-white h-full w-1/2`}
           layout
           transition={{
-            type: spring,
-            damping: 20,
-            stiffness: 120,
+            type: "spring",
+            damping: 25,
+            stiffness: 250,
           }}
         ></motion.span>
       </div>
-    </div>
+    </motion.div>
   );
 };
