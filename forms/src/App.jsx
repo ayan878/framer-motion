@@ -1,4 +1,5 @@
 import Form from "./Form";
+import Searchbar from "./Searchbar";
 import Testimonial from "./Testimonial";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div>
       <Form />
       <Testimonial />
+      <Searchbar/>
     </div>
   );
 }
